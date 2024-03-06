@@ -93,8 +93,8 @@ int OutputEnd(int rigth, int wrong){
     char restart; // for input value of y/Y or n/N
     printf("Rigth answers: %d\nWrong answers: %d\n\nWanna play next game? (y/n): ", rigth, wrong);
     scanf("%c", &restart);
+    int helper = getchar(); // this clause protects from skipping scanf
     if(restart == 89 || restart == 121){
-        restart = "";
         return 1; // means restart
     } else {
         printf("\nThanks for playing!");
