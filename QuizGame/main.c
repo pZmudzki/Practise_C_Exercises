@@ -20,22 +20,23 @@ int main() {
     // round - variable keeping track of a round, round 0 is the first round
     // rightAns, wrongAns - variables keeping track of bad and good answers
     // gameStarted - 1 = game is on, 0 = game has ended
-    int round, maxRounds, rightAns, wrongAns, gameStarted;
+    // currSelected - keeps the value of currently selected answer
+    int round, maxRounds, currSelected, rightAns, wrongAns, gameStarted;
 
     round = 0;
     maxRounds = sizeof(questions) / sizeof(questions[0]);
     rightAns = wrongAns = 0;
     gameStarted = 1;
 
-    int currSelected = 0;
+    currSelected = 0;
 
-    start:
+    start: // goto pointer
 
-    OutputOptions(currSelected, questions[round]);
+    OutputOptions(currSelected, questions[round]); // output first question
 
     while (gameStarted == 1) {
         if (kbhit()) {
-            int pressed_key = CheckKey();
+            int pressed_key = CheckKey(); // check what key has been pressed
             switch(pressed_key){
                 case 0: // up key
                     if(currSelected > 0){
@@ -56,14 +57,15 @@ int main() {
                     round++;
                     break;
             }
-            system("@cls||clear");
+            system("@cls||clear"); // clean console
             if(round == maxRounds){
                 gameStarted = 0;
             } else {
-                OutputOptions(currSelected, questions[round]);
+                OutputOptions(currSelected, questions[round]); // if game is on display options after each key press
             }
         }
     }
+    // output ending screen with an option to restart
     if(OutputEnd(rightAns, wrongAns) == 1){
         round = 0;
         rightAns = wrongAns = 0;
@@ -73,11 +75,11 @@ int main() {
     }
 }
 
-
+//function for displaying options and add > to option that user is pointing to
 void OutputOptions(int selected, Question q){
     char options[] = "abcd";
     printf("%s\n", q.question);
-    for(int i = 0; i <= 3; i++){
+    for(int i = 0; i <= 3; i++){ // list options
         if(selected == i){
             printf("> %c. %s\n", options[i], q.answers[i]);
         } else {
@@ -86,15 +88,17 @@ void OutputOptions(int selected, Question q){
     }
 }
 
+// function displaying endgame screen with an option to restart it
 int OutputEnd(int rigth, int wrong){
-    char restart;
+    char restart; // for input value of y/Y or n/N
     printf("Rigth answers: %d\nWrong answers: %d\n\nWanna play next game? (y/n): ", rigth, wrong);
     scanf("%c", &restart);
     if(restart == 89 || restart == 121){
-        return 1;
+        restart = "";
+        return 1; // means restart
     } else {
         printf("\nThanks for playing!");
-        return 0;
+        return 0; // end game
     }
 }
 
