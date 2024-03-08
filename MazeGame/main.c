@@ -38,7 +38,7 @@ int main(){
 
     Matrix mazeMatrix = {{
     {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
     {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1},
     {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1},
     {1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1},
@@ -127,15 +127,18 @@ void printOutMatrix(Matrix matrix, int playerDeaths, int clientX, int clientY){
     for(int i = 0; i <= matrix.matrix_height; i++){
         for(int j = 0; j <= matrix.matrix_width; j++){
             if(matrix.matrix[i][j] == 1){
-            // logic for placing border symbols
+                // logic for placing border symbols
                 generateBorders(i, j ,matrix );
 
             } else if(clientY == i && clientX == j){ // user position displayed as a smiley face
                 printf("%c", SMILEY_FACE);
+
             } else if(matrix.matrix[i][j] == 2){ // maze finish displayed as a note
                 printf("%c", NOTE_ASCII);
+
             } else if(matrix.matrix[i][j] != 3){
                 printf(" ");
+
             }
 
         }
@@ -147,25 +150,41 @@ void printOutMatrix(Matrix matrix, int playerDeaths, int clientX, int clientY){
 
 // logic for placing border symbols
 void generateBorders(int i, int j, Matrix matrix){
+    int a, x1, x2, y1, y2;
+    a = matrix.matrix[i][j];
+    /*
+    grid visualization
 
-    if(matrix.matrix[i][j] == matrix.matrix[i + 1][j]){
+     |     y1
+     |  x1 a  x2
+   i |     y2
+     ----------------
+     j
 
-        if(matrix.matrix[i][j] == matrix.matrix[i - 1][j]){ // vertical line
+    */
+
+    x1 = matrix.matrix[i][j - 1];
+    x2 = matrix.matrix[i][j + 1];
+    y1 = matrix.matrix[i - 1][j];
+    y2 = matrix.matrix[i + 1][j];
+
+    if(a == y2){
+        if(a == y1){ // vertical line
             printf("%c", BORDER_VERTICAL);
 
-        } else if(matrix.matrix[i][j] == matrix.matrix[i][j + 1]){ // lines going from bottom to right
+        } else if(a == x2 ){ // lines going from bottom to right
              printf("%c", BORDER_CORNER_LEFT_UP);
 
-        } else if(matrix.matrix[i][j] == matrix.matrix[i][j - 1]){ // lines going from bottom to left
+        } else if(a == x1){ // lines going from bottom to left
             printf("%c", BORDER_CORNER_RIGTH_UP);
 
         }
 
-    } else if(matrix.matrix[i][j] == matrix.matrix[i - 1][j]){
-        if(matrix.matrix[i][j] == matrix.matrix[i][j + 1]){ // lines going from top to rigth
+    } else if(a == y1){
+        if(a == x2){ // lines going from top to rigth
             printf("%c", BORDER_CORNER_LEFT_DOWN);
 
-        } else if(matrix.matrix[i][j] == matrix.matrix[i][j - 1]){ // lines going from top to left
+        } else if(a == x1 ){ // lines going from top to left
             printf("%c", BORDER_CORNER_RIGTH_DOWN);
         }
 
