@@ -2,6 +2,6 @@
 #define CHECKKEY_H_INCLUDED
 
 //function declaration
-int CheckKey();
+int checkKey();
 
 #endif // CHECKKEY_H_INCLUDED

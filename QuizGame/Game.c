@@ -1,4 +1,4 @@
-#include "include/CheckKey.h"
+#include "include/checkKey.h"
 
 struct question{  // structure for question
     char question[100];
@@ -7,7 +7,9 @@ struct question{  // structure for question
 };
 typedef struct question Question;
 
-void Game(){
+void game(){
+    system("@cls||clear"); // initial console clear to prevent colliding with another locations
+
     //initialize questions
     Question question1 = {"What is the capital of Poland?", {"Gdansk", "Warsaw", "Berlin", "Paris"}, 1};
     Question question2 = {"Which number is equal to dozen?", {"10", "50", "11", "12"}, 3};
@@ -84,8 +86,6 @@ void Game(){
     // currSelected - keeps the value of currently selected answer
     int round, maxRounds, currSelected, rightAns, wrongAns, gameStarted;
 
-    start: // goto pointer
-
     round = 0;
     maxRounds = sizeof(questions) / sizeof(questions[0]);
     rightAns = wrongAns = 0;
@@ -98,7 +98,7 @@ void Game(){
 
     while (gameStarted == 1) {
         if (kbhit()) { // for each key press render new view
-            int pressed_key = CheckKey(); // check what key has been pressed
+            int pressed_key = checkKey(); // check what key has been pressed
             switch(pressed_key){
                 case 72: // ascii code for up key
                     if(currSelected > 0){
@@ -128,14 +128,15 @@ void Game(){
             }
         }
     }
-    // output ending screen with an option to restart
+    /*// output ending screen with an option to restart
     if(OutputEnd(rightAns, wrongAns) == 1){
         round = 0;
         rightAns = wrongAns = 0;
         gameStarted = 1;
         system("@cls||clear");
         goto start;
-    }
+    } */
+    OutputEnd(rightAns, wrongAns);
 }
 
 //function for displaying options and add > to option that user is pointing to
@@ -152,17 +153,12 @@ void OutputOptions(int selected, Question q){
 }
 
 // function displaying endgame screen with an option to restart it
-int OutputEnd(int rigth, int wrong){
-    char restart; // for input value of y/Y or n/N
-    printf("Rigth answers: %d\nWrong answers: %d\n\nWanna play next game? (y/n): ", rigth, wrong);
-    scanf("%c", &restart);
-    int helper = getchar(); // this clause protects from skipping scanf
-    if(restart == 89 || restart == 121){
-        //restart = 0;
-        return 1; // means restart
-    } else {
-        printf("\nThanks for playing!");
-        return 0; // end game
+void OutputEnd(int rigth, int wrong){
+    printf("Rigth answers: %d\nWrong answers: %d\n\nPress ANY key to go back to Menu\n", rigth, wrong);
+    while(1){
+        if(kbhit()){
+            break;
+        }
     }
 }
 

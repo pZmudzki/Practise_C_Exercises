@@ -32,15 +32,27 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="CheckKey.c">
+		<Unit filename="auth.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="Game.c">
+		<Unit filename="checkKey.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="include/CheckKey.h" />
-		<Unit filename="include/Game.h" />
+		<Unit filename="game.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="include/auth.h" />
+		<Unit filename="include/checkKey.h" />
+		<Unit filename="include/game.h" />
+		<Unit filename="include/menu.h" />
+		<Unit filename="include/statistics.h" />
 		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="menu.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="statistics.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Extensions>

@@ -1,16 +1,33 @@
 # depslib dependency file v1.0
-1710443786 source:d:\c projects\quizgame\main.c
+1710457554 source:d:\c projects\quizgame\main.c
 	<stdio.h>
 	<string.h>
-	"include/Game.h"
+	"include/game.h"
+	"include/menu.h"
+	"include/auth.h"
 
-1710441685 source:d:\c projects\quizgame\checkkey.c
-	"include/CheckKey.h"
+1710452786 source:d:\c projects\quizgame\checkkey.c
+	"include/checkKey.h"
 
-1710441608 d:\c projects\quizgame\include\checkkey.h
+1710452707 d:\c projects\quizgame\include\checkkey.h
 
-1710443813 source:d:\c projects\quizgame\game.c
-	"include/CheckKey.h"
+1710456749 source:d:\c projects\quizgame\game.c
+	"include/checkKey.h"
 
-1710443762 d:\c projects\quizgame\include\game.h
+1710452794 d:\c projects\quizgame\include\game.h
+
+1710456329 source:d:\c projects\quizgame\menu.c
+	"include/checkKey.h"
+
+1710453319 d:\c projects\quizgame\include\menu.h
+
+1710456340 source:d:\c projects\quizgame\statistics.c
+	"include/statistics.h"
+
+1710455837 d:\c projects\quizgame\include\statistics.h
+
+1710457514 source:d:\c projects\quizgame\auth.c
+	"include/auth.h"
+
+1710457032 d:\c projects\quizgame\include\auth.h
 

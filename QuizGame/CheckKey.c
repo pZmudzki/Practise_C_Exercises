@@ -1,7 +1,7 @@
-#include "include/CheckKey.h"
+#include "include/checkKey.h"
 
 //function returning key code that has been pressed
-int CheckKey() {
+int checkKey() {
     int key;
     if (kbhit()) {
         key=getch();
