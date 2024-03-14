@@ -13,7 +13,7 @@
 
 struct matrixConfig{
     // in matrix: 0 - open for user to move, 1 - maze collision border, 2 - finish
-    int matrix[9][27];
+    int matrix[25][75];
     int defaultX;
     int defaultY;
     int matrix_height; // -1
