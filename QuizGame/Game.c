@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "include/checkKey.h"
 
 struct question{  // structure for question

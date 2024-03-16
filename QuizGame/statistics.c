@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "include/statistics.h"
 
 void statistics(){
