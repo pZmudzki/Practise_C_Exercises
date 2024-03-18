@@ -2,7 +2,7 @@
 #include "include/checkKey.h"
 
 int menu(){
-    system("@cls||clear"); // initial console clear to prevent colliding with another locations
+    //system("@cls||clear"); // initial console clear to prevent colliding with another locations
 
     int currSelected = 0;
 

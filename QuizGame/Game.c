@@ -162,10 +162,10 @@ int getQuestionsFromStorage(int randArr[], int randArrLength, Question questions
                 char answers[4][50];
                 int rightAnswer;
 
-                int j = 0;
+                int column = 0;
                 while(token != NULL){
 
-                    switch(j){
+                    switch(column){
                         case 1:
                             strncpy(question, token, 100);
                             break;
@@ -186,7 +186,7 @@ int getQuestionsFromStorage(int randArr[], int randArrLength, Question questions
                             break;
                     }
                     token = strtok(NULL, ",");
-                    j++;
+                    column++;
                 }
                 Question newQuestion; // init a question "class" helper
 

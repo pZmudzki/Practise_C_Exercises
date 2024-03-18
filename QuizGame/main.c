@@ -7,7 +7,7 @@
 
 int main() {
     //game();
-    //auth();
+    auth();
     while(1){
         switch(menu()){
             case 0:
