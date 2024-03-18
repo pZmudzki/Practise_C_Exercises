@@ -6,7 +6,8 @@
 #include "include/auth.h"
 
 int main() {
-    auth();
+    //game();
+    //auth();
     while(1){
         switch(menu()){
             case 0:
