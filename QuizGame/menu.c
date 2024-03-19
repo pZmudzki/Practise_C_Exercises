@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <conio.h>
+
 #include "include/checkKey.h"
 
 int menu(){

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <conio.h>
 
 #include "include/auth.h"
 
@@ -7,52 +8,77 @@
 #define MAX_PASSWORD_LENGTH 11
 
 int auth(){
-    int userID = loginUser();
-    if(userID != 0){
-        return userID;
-    } else {
-        return registerUser();
-    }
-
-
+    return loginUser();
 }
 
 
 int loginUser(){
     int error = 0;
-
     while(1){
         system("@cls||clear");
+        char ch;
 
-        char nickname[MAX_NICKNAME_LENGTH];
-        char password[MAX_PASSWORD_LENGTH];
         if(error){
             printf("Wrong nickname or password, try again!\n\n");
-        } else {
-            printf("Please Log into your account\n\n");
         }
 
-        printf("Nickname: ");
-        scanf("%10s", &nickname);
+        printf("To login press any key\nTo register press ESC\n");
+            // check if user presses esc key
+            ch = getch();
+            if((int)ch == 27){
+                return registerUser();
+            }
 
-        printf("Password: ");
-        scanf("%10s", &password);
+            system("@cls||clear");
 
-        int userID = checkCredentials(nickname, password);
-        if(userID != 0){
-            return userID;
-        }
-        error = 1;
+            char nickname[MAX_NICKNAME_LENGTH];
+            char password[MAX_PASSWORD_LENGTH];
+
+            printf("Nickname: ");
+            scanf("%10s", &nickname);
+
+            printf("Password: ");
+            scanf("%10s", &password);
+
+            int userID = checkCredentials(nickname, password);
+            if(userID != 0){
+                return userID;
+            }
+            error = 1;
     }
-
-    return 0;
 }
 
 
 int registerUser(){
-    return 0;
-}
 
+    while(1){
+        system("@cls||clear");
+        char ch;
+        printf("To register press any key\nTo login press ESC\n");
+
+        // check if user presses esc key
+        ch = getch();
+        if((int)ch == 27){
+            return loginUser();
+        }
+
+        system("@cls||clear");
+
+        char nickname[MAX_NICKNAME_LENGTH];
+        char password[MAX_PASSWORD_LENGTH];
+
+        printf("Welcome, please register a new account.\n\n");
+
+        printf("(max 10 characters)\nNickname: ");
+        scanf("%10s", &nickname);
+
+        printf("(max 10 characters)\nPassword: ");
+        scanf("%10s", &password);
+
+        saveNewUser(nickname, password);
+        return checkCredentials(nickname, password);
+    }
+}
 
 
 int checkCredentials(char nickname[], char password[]){
@@ -96,6 +122,29 @@ int checkCredentials(char nickname[], char password[]){
     fclose(fp);
 
     return 0;
+}
+
+void saveNewUser(char nickname[], char password[]){
+    FILE *fp;
+    int lastID = 0;
+    int row_length = MAX_NICKNAME_LENGTH + MAX_PASSWORD_LENGTH + 10;
+    char row[row_length];
+
+    fp = fopen("./storage/users.csv","r");
+
+    while(!feof(fp)){
+        fgets(row, row_length, fp);
+        lastID++;
+    }
+
+    fclose(fp);
+
+    fp = fopen("./storage/users.csv", "a");
+
+    fprintf(fp, "\n%s,%s,%d", nickname, password, lastID + 1);
+
+    fclose(fp);
+
 }
 
 

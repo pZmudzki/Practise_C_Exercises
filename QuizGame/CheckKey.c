@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <conio.h>
+
 #include "include/checkKey.h"
 
 //function returning key code that has been pressed

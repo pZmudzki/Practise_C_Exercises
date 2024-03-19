@@ -1,7 +1,9 @@
 #include <stdio.h>
-#include<stdlib.h>
-#include<string.h>
+#include <stdlib.h>
+#include <string.h>
 #include <time.h>
+#include <conio.h>
+
 
 #include "include/checkKey.h"
 
@@ -211,7 +213,7 @@ int getQuestionsFromStorage(int randArr[], int randArrLength, Question questions
 }
 
 int saveGame(int right, int wrong, int userID){
-    int gamesCount = 0;
+    int lastID = 0;
     char row[100];
 
     FILE *fp;
@@ -219,7 +221,7 @@ int saveGame(int right, int wrong, int userID){
 
     while(!feof(fp)){
         fgets(row, 100, fp);
-        gamesCount++;
+        lastID++;
     }
 
     fclose(fp);
@@ -227,7 +229,7 @@ int saveGame(int right, int wrong, int userID){
     fp = fopen("./storage/games.csv","a");
 
     // game id, user id, ans right, ans wrong
-    fprintf(fp, "\n%d,%d,%d,%d", gamesCount + 1, userID, right, wrong);
+    fprintf(fp, "\n%d,%d,%d,%d", lastID + 1, userID, right, wrong);
 
     fclose(fp);
 
