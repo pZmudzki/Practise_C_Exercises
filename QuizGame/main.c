@@ -6,15 +6,15 @@
 #include "include/auth.h"
 
 int main() {
-    //game();
-    auth();
+    int user; // user id
+    user = auth();
     while(1){
         switch(menu()){
             case 0:
-                game();
+                game(user);
                 break;
             case 1:
-                statistics();
+                statistics(user);
                 break;
             case 2:
                 printf("\nThanks for playing, see ya!\n");

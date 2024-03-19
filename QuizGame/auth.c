@@ -6,10 +6,13 @@
 #define MAX_NICKNAME_LENGTH 11
 #define MAX_PASSWORD_LENGTH 11
 
-void auth(){
-
-    printf("\nuser id: %d\n", loginUser());
-    registerUser();
+int auth(){
+    int userID = loginUser();
+    if(userID != 0){
+        return userID;
+    } else {
+        return registerUser();
+    }
 
 
 }
@@ -19,7 +22,7 @@ int loginUser(){
     int error = 0;
 
     while(1){
-        //system("@cls||clear");
+        system("@cls||clear");
 
         char nickname[MAX_NICKNAME_LENGTH];
         char password[MAX_PASSWORD_LENGTH];
@@ -47,7 +50,9 @@ int loginUser(){
 
 
 int registerUser(){
+    return 0;
 }
+
 
 
 int checkCredentials(char nickname[], char password[]){
@@ -88,6 +93,7 @@ int checkCredentials(char nickname[], char password[]){
             return id;
         }
     }
+    fclose(fp);
 
     return 0;
 }

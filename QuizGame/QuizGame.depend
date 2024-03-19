@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1710772368 source:d:\c projects\quizgame\main.c
+1710861605 source:d:\c projects\quizgame\main.c
 	<stdio.h>
 	<string.h>
 	"include/game.h"
@@ -12,7 +12,7 @@
 
 1710452707 d:\c projects\quizgame\include\checkkey.h
 
-1710783374 source:d:\c projects\quizgame\game.c
+1710848707 source:d:\c projects\quizgame\game.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -21,22 +21,23 @@
 
 1710452794 d:\c projects\quizgame\include\game.h
 
-1710616241 source:d:\c projects\quizgame\menu.c
+1710791752 source:d:\c projects\quizgame\menu.c
 	<stdio.h>
 	"include/checkKey.h"
 
 1710453319 d:\c projects\quizgame\include\menu.h
 
-1710615064 source:d:\c projects\quizgame\statistics.c
+1710861994 source:d:\c projects\quizgame\statistics.c
 	<stdio.h>
+	<stdlib.h>
 	"include/statistics.h"
 
 1710455837 d:\c projects\quizgame\include\statistics.h
 
-1710784760 source:d:\c projects\quizgame\auth.c
+1710862520 source:d:\c projects\quizgame\auth.c
 	<stdio.h>
 	<string.h>
 	"include/auth.h"
 
-1710457032 d:\c projects\quizgame\include\auth.h
+1710791739 d:\c projects\quizgame\include\auth.h
 

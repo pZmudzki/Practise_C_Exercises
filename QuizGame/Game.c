@@ -14,7 +14,7 @@ struct question{  // structure for question
 };
 typedef struct question Question;
 
-void game(){
+void game(int userID){
     system("@cls||clear"); // initial console clear to prevent colliding with another locations
 
     // random integer arr which implies questions id
@@ -82,8 +82,11 @@ void game(){
         system("@cls||clear");
         goto start;
     } */
+
+    saveGame(rightAns, wrongAns, userID);
     OutputEnd(rightAns, wrongAns);
 }
+
 
 //function for displaying options and add > to option that user is pointing to
 void OutputOptions(int selected, Question q){
@@ -148,8 +151,7 @@ int getQuestionsFromStorage(int randArr[], int randArrLength, Question questions
     fp = fopen("./storage/questions.csv","r");
 
     // row = id,question,answer1,answer2,answer3,answer4,rightAns
-    while (!feof(fp))
-    {
+    while (!feof(fp)){
         fgets(row, 350, fp);
 
         for(int i = 0; i <= randArrLength - 1; i++){
@@ -204,6 +206,31 @@ int getQuestionsFromStorage(int randArr[], int randArrLength, Question questions
         }
         currRow++;
     }
+    fclose(fp);
+    return 0;
+}
+
+int saveGame(int right, int wrong, int userID){
+    int gamesCount = 0;
+    char row[100];
+
+    FILE *fp;
+    fp = fopen("./storage/games.csv","r");
+
+    while(!feof(fp)){
+        fgets(row, 100, fp);
+        gamesCount++;
+    }
+
+    fclose(fp);
+
+    fp = fopen("./storage/games.csv","a");
+
+    // game id, user id, ans right, ans wrong
+    fprintf(fp, "\n%d,%d,%d,%d", gamesCount + 1, userID, right, wrong);
+
+    fclose(fp);
+
     return 0;
 }
 
