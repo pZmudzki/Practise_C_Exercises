@@ -12,7 +12,10 @@ void statistics(int userID){
 
     getStatsFromStorage(userID, &gamesCount, &rightAnswerCount, &wrongAnswerCount);
 
-    printf("Games played: %d\nRight answers: %.1f %%\nWrong answers: %.1f %%\n\nPress ANY key to go back to Menu\n", gamesCount, ((float)rightAnswerCount / ((float)gamesCount * 10)) * 100,((float) wrongAnswerCount / ((float) gamesCount * 10)) * 100);
+    float rightAnswerRatio = (gamesCount > 0) ? (((float)rightAnswerCount / ((float)gamesCount * 10)) * 100) : 0.0;
+    float wrongAnswerRatio = (gamesCount > 0) ? (((float)wrongAnswerCount / ((float)gamesCount * 10)) * 100) : 0.0;
+
+    printf("Games played: %d\nRight answers: %.1f %%\nWrong answers: %.1f %%\n\nPress ANY key to go back to Menu\n", gamesCount, rightAnswerRatio, wrongAnswerRatio);
 
     while(1){
         if(kbhit()){
